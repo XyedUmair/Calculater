@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Calculator</title>
+    <title>Improved Calculator</title>
     <style>
         body {
             display: flex;
@@ -13,7 +13,7 @@
             background-color: #f4f4f4;
         }
         .calculator {
-            width: 300px;
+            width: 320px;
             padding: 20px;
             background: #222;
             border-radius: 10px;
@@ -22,9 +22,9 @@
         }
         input {
             width: 100%;
-            height: 50px;
+            height: 60px;
             text-align: right;
-            font-size: 20px;
+            font-size: 24px;
             margin-bottom: 10px;
             border: none;
             border-radius: 5px;
@@ -32,11 +32,15 @@
             color: white;
             padding: 10px;
         }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
         button {
-            width: 22%;
-            height: 50px;
-            margin: 5px;
-            font-size: 18px;
+            width: 100%;
+            height: 60px;
+            font-size: 20px;
             border: none;
             border-radius: 5px;
             background: white;
@@ -58,51 +62,42 @@
     </style>
 </head>
 <body>
-
     <div class="calculator">
         <input type="text" id="display" readonly>
-        <br>
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="backspace()">←</button>
-        <button class="memory" onclick="memorySave()">M</button>
-        <button class="operator" onclick="appendToDisplay('/')">/</button>
-        <br>
-        <button onclick="appendToDisplay('7')">7</button>
-        <button onclick="appendToDisplay('8')">8</button>
-        <button onclick="appendToDisplay('9')">9</button>
-        <button class="operator" onclick="appendToDisplay('*')">*</button>
-        <br>
-        <button onclick="appendToDisplay('4')">4</button>
-        <button onclick="appendToDisplay('5')">5</button>
-        <button onclick="appendToDisplay('6')">6</button>
-        <button class="operator" onclick="appendToDisplay('-')">-</button>
-        <br>
-        <button onclick="appendToDisplay('1')">1</button>
-        <button onclick="appendToDisplay('2')">2</button>
-        <button onclick="appendToDisplay('3')">3</button>
-        <button class="operator" onclick="appendToDisplay('+')">+</button>
-        <br>
-        <button onclick="appendToDisplay('0')">0</button>
-        <button onclick="appendToDisplay('.')">.</button>
-        <button class="equal" onclick="calculate()">=</button>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="backspace()">←</button>
+            <button class="memory" onclick="memorySave()">M</button>
+            <button class="operator" onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
     </div>
-
     <script>
         let memory = 0;
-
         function appendToDisplay(value) {
             document.getElementById("display").value += value;
         }
-
         function clearDisplay() {
             document.getElementById("display").value = "";
         }
-
         function backspace() {
             let current = document.getElementById("display").value;
             document.getElementById("display").value = current.slice(0, -1);
         }
-
         function calculate() {
             try {
                 document.getElementById("display").value = eval(document.getElementById("display").value);
@@ -110,12 +105,10 @@
                 document.getElementById("display").value = "Error";
             }
         }
-
         function memorySave() {
             memory = parseFloat(document.getElementById("display").value) || 0;
             alert("Saved: " + memory);
         }
     </script>
-
 </body>
 </html>
