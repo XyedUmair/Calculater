@@ -11,6 +11,7 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            margin: 0;
         }
         .calculator {
             width: 320px;
@@ -18,7 +19,9 @@
             background: #222;
             border-radius: 10px;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         input {
             width: 100%;
@@ -36,6 +39,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
+            width: 100%;
         }
         button {
             width: 100%;
@@ -59,13 +63,17 @@
             background: blue;
             color: white;
         }
+        .delete {
+            background: red;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="calculator">
         <input type="text" id="display" readonly>
         <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
+            <button class="delete" onclick="clearDisplay()">C</button>
             <button onclick="backspace()">←</button>
             <button class="memory" onclick="memorySave()">M</button>
             <button class="operator" onclick="appendToDisplay('/')">/</button>
